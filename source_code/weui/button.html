@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>源码分析之-WEUI</title>
+    <style>
+    *{
+            margin: 0;
+            padding: 0;
+    }
+    /* weui button 组件样式*/
+    .weui-btn{
+        display: block;
+        width: 184px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 8px 24px;
+        font-weight: 700;
+        font-size: 17px;
+        text-align: center;
+        text-decoration: none;
+        color: #ffffff;
+        line-height: 1.41176471;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    .weui-btn_primary{
+        background-color: #07c160;
+    }
+    .weui-btn_default{
+        background-color: #f2f2f2;
+        color: #06ae56;
+    }
+    .weui-btn_warn{
+        background-color:#f2f2f2 ;
+        color: #fa5151;
+    }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="page_hd">
+            <h1 class="page__title"> Button </h1>
+            <p class="page_desc">按钮</p>
+        </div>
+        <div class="page_bd">
+            <a href="javascript:;" class="weui-btn weui-btn_primary">页面主操作</a>
+            <a href="javascript:;" class="weui-btn weui-btn_default">页面次操作</a>
+            <a href="javascript:;" class="weui-btn weui-btn_warn">警告操作</a>
+        </div>
+    </div>
+    
+</body>
+</html>
