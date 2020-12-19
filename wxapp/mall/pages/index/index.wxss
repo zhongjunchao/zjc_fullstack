@@ -1,0 +1,12 @@
+swiper,swiper-item,image {
+  width: 100vw;
+  height: 100vh;
+}
+
+.btn{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  text-align: center;
+}
