@@ -1,0 +1,21 @@
+/* pages/my/my.wxss */
+.user-poster {
+    width: 100%;
+    height: 53vw;
+}
+/* 框架样式不用写了 70% */
+/* vant之外 写一些业务样式 */
+.user-links {
+  padding: 15px 0;
+  font-size: 12px;
+  text-align: center;
+  background-color: #ffffff;
+}
+.user-links .van-icon{
+  display: block;
+  font-size-adjust: 24px;
+}
+.user-group{
+  margin-bottom: 20px;
+  display: block;
+}

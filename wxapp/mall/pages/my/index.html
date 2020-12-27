@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=4105776946,2723577313&fm=26&gp=0.jpg"
+     alt="" id="avatar">
+    <script>
+    const strAvatar='https://img.36krcdn.com/20201227/v2_674c162cce6d45d2a9328bcc8166c0c8_img_jpg';//如何把它给img
+    const oAvatar=document.querySelector('#avatar');
+    //console.log(typeof oAvatar);
+    //oAvatar.src=strAvatar;图片大一点的话，网络差一点的话
+    const oImg =new Image();//没有在dom中 内存中，由浏览器分配
+    //url ->proxy ->http ->request ->response 网络层
+    oImg.src=strAvator;//浏览器是访问网站的代理，浏览器启动一个网络进程，下载一张图片
+    oImg.onload=function(){
+        console.log('--------')
+        //http response over
+        //浏览器有缓存
+    oAvatar.src=strAvatar;
+    }
+    </script>
+</body>
+</html>
