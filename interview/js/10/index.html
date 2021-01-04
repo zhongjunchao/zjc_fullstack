@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //reset 运算符 ...
+        const fn =(...args)=>{
+            //内置对象 运行时有 fn=(b)=>  not defined
+            //console.log(arguments.length,b,arguments[0],arguments[1],arguments[2]);
+            //console.log(typeof b);
+            console.log(args);
+        }
+        // js 函数传参也不严格
+        fn(1,2,3);
+    </script>
+</body>
+</html>
