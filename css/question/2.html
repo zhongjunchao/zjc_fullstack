@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 
+    ">
+    <title>Document</title>
+</head>
+<body>
+    img 1000px 500
+    375 750
+    等比例缩放
+    设备（device）像素指的是物理像素
+    `viewport` 视窗 指的是移动才有的 PC端没有
+    maximum-scale=1, user-scalable=no  设置视窗 无法缩放
+    在 pc时代  页面比较大  基于img等比例缩放   把pc页面显示在手机里 也可以缩放
+    为避免模糊   使用移动端特有的手势 pinch  放大 
+    加入了   maximum-scale=1, user-scalable=no  将无法进行缩放   
+    PC 站都有相应的手机网站  没有相应的需求 所以可以不再使用  
+    前端   PC|移动|小程序|App
+    www.taobao.com 手机端 -> 请求服务器 http -> 设备是手机 返回移动官网 ->mian.m.taobao.com
+    服务器http 返回一个 302 状态码
+</body>
+</html>

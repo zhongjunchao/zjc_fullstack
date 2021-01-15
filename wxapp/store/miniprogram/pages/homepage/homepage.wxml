@@ -1,0 +1,48 @@
+<view class="offline" wx:if="{{offline}}" >
+  打烊了
+</view>
+<view class="myHomePage" wx:if="{{isShow&&!offline}}">
+  <!-- 搜索框 -->
+  <my-search></my-search>
+  <!-- 轮播图 -->
+  <view class="swiper-container">
+    <index-swiper imgUrls="{{imgUrls}}"></index-swiper>
+  </view>
+  <!-- 分类展示 -->
+  <view class="type-container">
+    <view class="type-item" 
+    wx:for="{{typeCat}}"
+    wx:key="id"
+    >
+      <view data-id="{{item.id}}"
+       class="type-name {{activeTypeId === item.id? 'type-item-on':''}}"
+       bindtap="typeSwitch"
+       >
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+  <view class="fruit-container">
+    <block wx:for="{{fruitInfo}}" wx:key="fruitId">
+      <view class="fruit-item" bindtap="tapToDetail"
+      data-fid="{{item._id}}" wx:if="{{item.onShow}}">
+        <view class="fruit-image">
+          <image src="{{item.imgUrl}}" mode="aspectFill"/>
+        </view>
+        <view class="fruit-info">
+          <view class="line1">
+            <text class="name">{{item.name}}</text>
+          </view>
+          <view class="line2">
+            <view class="price">
+              <text>${{item.price}}</text>
+              <text class="unit">{{item.unit}}</text>
+            </view>
+            <image src="../../images/icon/cart4.png" mode="aspectFit" 
+            catchtap="addCartByHome" data-fid="{{item._id}}" />
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,67 @@
+<view class='detail-container'>
+  <view class='swiperContainer'>
+    <detail-swiper imgUrls="{{fruitDetail.tmpPictures}}"></detail-swiper>
+  </view>
+  <view class='detail-info'>
+    <!-- 第一行 -->
+    <view class='line1'>
+      <!-- 名字 -->
+      <view>{{fruitDetail.name}}</view>
+    </view>
+    <!-- 第二行 -->
+    <view class='line2'>
+      <view class='price'>价格:￥{{fruitDetail.price}}</view>
+      <view class='purchaseFreq'>已售 {{fruitDetail.purchaseFreq}} 份</view>
+    </view>
+  </view>
+  <view class='other-info'>
+    <!-- 选项卡 -->
+    <view class="goods-tab-box">
+        <view class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0">详情</view>
+        <view class="goods-tab-nav {{curIndex === 1 ?'on':''}}" bindtap="bindTap" data-index="1">评论</view>
+    </view>
+
+    <!-- 评论 -->
+    <view class="goods-content">
+        <view wx:if="{{curIndex === 1}}" class="WxComment">
+              <WxComment tipOne="powered by Voyz_Shen" tipTwo="" submitBtnText="评论" articleID="{{articleID}}" contentLen='1'></WxComment>
+        </view>
+
+        <!-- <view wx:if="{{curIndex === 1}}">{{fruitDetail.service}}<[表情]iew> -->
+        <view wx:if="{{curIndex === 0}}" class='theDetail'>
+          {{fruitDetail.detail}}
+        </view>
+    </view>
+  </view>
+  <view class='detail-nav'>
+    <!-- 购物车 -->
+    <view class='cart' bindtap='goToCart'>
+      <image src="../../images/icon/cart3.png" mode='scaleToFill'></image>
+      <view>购物车</view>
+    </view>
+    <view class='addToCart' bindtap='addToCart'>加入购物车</view>
+    <view class='buy' bindtap='toBuy'>立即购买</view>
+  </view>
+
+  <view class="popUpWindow" hidden="{{popUpHidden}}">
+  <!-- ssssssssss 购买数量  -->
+    <view class="popUpMask">
+      <view class="popCard">
+        <view style="width:700rpx" bindtap="popCancel">
+          <icon type="cancel" size="20" color="grey" style="float:right"/>
+        </view>
+        <view class="popName">{{fruitDetail.name}}</view>
+        <view class="popPrice">${{fruitDetail.price}}</view>
+        <view class="popCount">
+          <view class="word">购买数量</view>
+          <view class="plusMinus">
+            <view class="minus" bindtap="minusCount">-</view>
+            <view class="count" >{{popCartCount}}</view>
+            <view class="plus" bindtap="plusCount">+</view>
+          </view>
+        </view>
+        <view class="popButton" bindtap="toCart">加入购物车</view>
+      </view>
+    </view>
+  </view>
+</view>
