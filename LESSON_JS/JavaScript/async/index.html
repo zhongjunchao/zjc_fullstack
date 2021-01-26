@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="btn">点击</button>
+    <script>
+        const btn = document.querySelector('.btn');
+        let xhr = new XMLHttpRequest(); // ajax 耗时任务
+        setTimeout(() => {
+            console.log('timeout');
+        }, 0);
+        btn.addEventListener('click', () => {
+                console.log('btn clicked');
+            }, false)
+            // 封装ajax 的请求 回调函数
+        function loadAjaxContent(url, callback) {
+            // 0
+            console.log(xhr.readyState, '----1');
+            xhr.open('GET', url);
+            console.log(xhr.readyState, '----2');
+            xhr.onreadystatechange = function() {
+                console.log(xhr.readyState, '----4');
+                // readState 哪几个值?
+                // 0 未初始化，还没调用open
+                // 1 请求建立 还没有发送
+                // 2 请求已发送， 正在处理中 pending
+                // 3 请求在处理中，已有部分数据,
+                // 4 响应已完成 可以获取并使用服务器的响应
+                // 0 － （未初始化）还没有调用send()方法
+                // 1 － （载入）已调用send()方法，正在发送请求
+                // 2 － （载入完成）send()方法执行完成，已经接收到全部响应内容
+                // 3 － （交互）正在解析响应内容
+                // 4 － （完成）响应内容解析完成，可以在客户端调用了
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    callback(JSON.parse(xhr.responseText));
+                    // json 作为数据传输的格式，比xml更轻量 <userInfo><login>ruanyf</login></userInfo>
+                }
+            }
+            xhr.send();
+            console.log(xhr.readyState, '----3');
+        }
+        // 更精细化的处理异步问题 顺序执行
+        // 阻塞 JS node 性能很好
+        // 异步任务的同步化
+        // 异步任务 callback -> promise+then -> generator -> async await
+        // 先得到阮一峰 git info
+        // 然后得到阮一峰 所有的repo
+        // promise 出现的前夜 回调地狱
+        // loadAjaxContent('https://api.github.com/users/ruany', (user) => {
+        //     // console.log(data, '||||||||');
+        //     console.log(user, 'users');
+        //     loadAjaxContent('https://api.github.com/users/ruany/repos', (repos) => {
+        //         console.log(repos, 'repos');
+        //         loadAjaxContent('https://api.github.com/search/issues?q=ruanyf', (results) => {
+        //             console.log(results, 'results');
+        //         });
+        //     });
+        // });
+
+        let p1 = new Promise((resolve, reject) => {
+            console.log('bbbbb');
+            xhr.open('GET', 'https://api.github.com/search/issues?q=ruanyf');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    resolve(JSON.parse(xhr.responseText))
+                }
+            }
+            xhr.send();
+        });
+
+        // let p2 = new Promise((resolve, reject) => {
+        //     console.log('bbbbb');
+        //     xhr.open('GET', 'https://api.github.com/search/issues?q=ruanyf');
+        //     xhr.onreadystatechange = function() {
+        //         if (xhr.readyState == 4 && xhr.status == 200) {
+        //             resolve(JSON.parse(xhr.responseText))
+        //         }
+        //     }
+        //     xhr.send();
+        // });
+        p1
+            .then(data => {
+                console.log(data);
+        // p2
+        //     .then(data => {
+        //         console.log(data);
+        //     });
+            })
+        console.log('aaaaa');
+        // ajax -> ?
+        fetch('https://api.github.com/users/ruany')
+            .then(data => data.json()) // readstream 二进制流 json 化 编程对象 要花时间所有要.then()
+            .then(data => {
+                // then 回调函数里 return promise 实例, 继续thenable
+                console.log('users', data);
+                return fetch('https://api.github.com/users/ruany/repos')
+            })
+            .then(data => data.json())
+            .then(data => {
+                console.log('users', data);
+            })
+            .catch(err => {
+                console.loadAjaxContent(err)
+            })
+    </script>
+</body>
+
+</html>
