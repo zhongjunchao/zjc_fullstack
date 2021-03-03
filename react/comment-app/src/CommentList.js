@@ -1,13 +1,20 @@
-import React, { Component } from 'react'; //es6 解构
-import './CommentList.css'; // wxss
+import React, { Component } from 'react'
+import Comment from './Comment'
 
-export default class CommentList extends Component {
+class CommentList extends Component {
+  static defaultProps = {
+    comments: []
+  }
+
   render() {
-    // JSX  wxml
     return (
       <div>
-          CommentList
+        {this.props.comments.map((comment, i) =>
+          <Comment comment={comment} key={i} />
+        )}
       </div>
     )
   }
 }
+
+export default CommentList
