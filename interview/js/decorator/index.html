@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./compiled.js">
+  </script>
+  <script>
+  var xyj = new Person();
+  xyj.first = '原骏';
+  xyj.last = '夏';
+  console.log(xyj.name());
+  xyj.name = 'ssss'; // 现在是可写的
+  console.log(xyj.name);
+  console.log(Object.keys(xyj)) 
+  </script>
+</body>
+</html>
