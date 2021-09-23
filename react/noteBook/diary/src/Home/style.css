@@ -1,0 +1,12 @@
+.diary-list .diary-item{
+  margin-bottom: 20px;
+}
+
+.diary-item .am-card-header-content{
+  flex: 7 1;
+}
+
+.diary-item .am-card-header-content img{
+  width: 36px;
+  height: 36px;
+}
