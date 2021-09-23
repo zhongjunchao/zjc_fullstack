@@ -1,0 +1,30 @@
+{
+  "name": "shop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "core-js": "^3.8.3",
+    "js-md5": "^0.7.3",
+    "lib-flexible": "^0.3.2",
+    "md5": "^2.3.0",
+    "vant": "^3.0.12",
+    "vue": "^3.0.4",
+    "vue-img-verify": "^1.0.0",
+    "vue-router": "^4.0.3",
+    "vuex": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0-alpha.8",
+    "@vue/cli-plugin-router": "~5.0.0-alpha.8",
+    "@vue/cli-plugin-vuex": "~5.0.0-alpha.8",
+    "@vue/cli-service": "~5.0.0-alpha.8",
+    "@vue/compiler-sfc": "^3.0.4",
+    "less": "^4.0.0",
+    "less-loader": "^8.0.0"
+  }
+}

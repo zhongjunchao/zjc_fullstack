@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>login</title>
+    <script type="text/javascript">
+        //加载时调整网页宽度
+        window.onload=function(){
+            resetPage();
+        }
+        //浏览器被重置大小时调整网页宽度
+        window.onresize=function(){
+            resetPage();
+        }
+        function resetPage(){
+            var deviceWidth=document.documentElement.clientWidth;
+            //获取ID为wrapper的元素
+            originWidth=document.getElementById('wrapper');
+            //获取该元素的宽度并确定缩放比例
+            scale=deviceWidth/originWidth.clientWidth; 
+            //按比例缩放到适合屏幕的大小
+            document.body.style.zoom=scale;
+        }
+    </script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body {
+	    background-color: white;
+	}
+    #wrapper {
+        width: 480px;
+        height: 800px;
+        margin: 0 auto;
+        background-color: rgb(21, 142, 212);
+        display: flex;
+    }
+    #in{
+        width: 200px;
+        height: 200px;
+        top: 200px;
+        margin: 0 auto;
+        position: relative;
+        background-color: lightblue;
+    }
+</style>
+
+<body>
+    <div id="wrapper">
+        <div id="in">
+            <input id="username" type="text" placeholder="请输入用户名">
+            <input id="password" type="password" placeholder="请输入密码">
+            <br />
+            <br />
+            <input id="login" type="button" value="登录">
+            <input id="setInput" type="button" value="注册">
+        </div>
+    </div>
+    
+
+    <script>
+
+        //获取页面中的元素
+        var username = document.getElementById("username");
+        var password = document.getElementById("password");
+        var login = document.getElementById("login");
+        var setInput = document.getElementById("setInput");
+        //给localStorage加载初始数据
+        localStorage.username += "张哈哈:123;";
+        //设置个函数判断localStorage中是否有对应的账号密码
+        function tuust(value) {
+            var dta = localStorage.username.split(";");
+            for (let i = 0; i < dta.length; i++) {
+                var arrPust = dta[i].split(":");
+                if (arrPust[0] == value) {
+                    if (arrPust[1] == password.value) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        //给登录按钮添加个判断，先判断用户名和密码框为不为空，并且数据库中有没有对应的数值。
+        login.addEventListener("click", function () {
+            if (username.value == "" || password.value == "") {
+                alert("用户名和密码不能为空");
+            } else {
+                if (tuust(username.value)) {
+                    localStorage.username += username.value + ":" + password.value + ";";
+                    location.href = "enter.html";
+                    alert("登录成功");
+                    username.value = "";
+
+                    password.value = "";
+                } else {
+                    alert("没有你的用户名或者密码错误，重新注册一个吧");
+                }
+            }
+        });
+        //跳转到注册界面
+        setInput.addEventListener("click", function () {
+            location.href = "register.html";
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "jsonp",
+  "version": "1.0.0",
+  "description": "- 后端的跨域解决方案\r   - JSONP json with padding\r   https://photo.sina.cn/aj/index?page=1&cate=recommend\r   同源机制 为了安全  端口、协议、域名不同就会跨域 会让一个域的js无法和另一个域的内容进行交互",
+  "main": "a.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}

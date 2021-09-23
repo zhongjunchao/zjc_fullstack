@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0184384-钟俊超-计算器</title>
+    <style>
+        *{
+            margin: 0px; 
+            padding: 0px;
+        }
+		table{ border: 2px solid #996c33; 
+            width: 550px; 
+            padding: 10px; 
+            margin: 150px auto; 
+            background-color: bisque; 
+            border-radius: 10px;}
+		table td{
+			text-align: center;
+			width: 100px;
+			height: 40px;
+			padding-left: 2px;
+			padding-bottom: 2px;
+		}
+		table th{
+			font-size: 18px;
+			font-family:'楷体';
+			color: 	#8B0000;
+		}
+		table td button{
+			width: 98%;
+			height: 98%;
+			font-size: 16px;
+			font-family: 'Microsoft yahei';
+			background: none;
+			color: 	#8B4726;
+			outline:none;
+			border:1px solid #000;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		table td input{
+			width: 100%;
+			margin: 10px 0;
+			padding: 5px;
+			border:1px solid #996c33;
+            color: #996c33;
+			box-sizing: border-box;						
+			text-align: right;
+			font-size: 16px;
+			font-family: 'Microsoft yahei';
+		}
+		.errorHint{
+            position: absolute;
+            width: 200px;
+            height: 30px;
+            text-align: center;
+            left: 50%;
+            margin-left: -100px;
+            color: #996c33;
+            background-color: bisque;
+            top:-30px;
+        }
+		.showError{
+            border:2px solid red;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+	<div class="errorHint" id="errorHint">你的输入非法，请重新输入</div>
+	<table cellpadding="0">
+		<tr>
+			<th colspan="5">计算器</th>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<input type="text" value="0" name="showResult">
+			</td>
+		</tr>
+		<tr>
+			<td><button>7</button></td>
+			<td><button>8</button></td>
+			<td><button>9</button></td>
+			<td><button class="setChange" id="backSpace">退格</button></td>
+			<td><button class="setChange" id="clearNum">C</button></td>
+		</tr>
+		<tr>
+			<td><button>4</button></td>
+			<td><button>5</button></td>
+			<td><button>6</button></td>
+			<td><button>+</button></td>
+			<td><button>-</button></td>
+		</tr>
+		<tr>
+			<td><button>1</button></td>
+			<td><button>2</button></td>
+			<td><button>3</button></td>
+			<td><button>*</button></td>
+			<td><button>/</button></td>
+		</tr>
+		<tr>
+			<td><button>0</button></td>
+			<td><button>.</button></td>
+			<td><button>%</button></td>
+			<td colspan="2"><button class="setChange" id="gainResult">Enter</button></td>
+		</tr>
+	</table>
+	<script>
+        var oinput=document.getElementsByTagName('input')[0];
+		//获取外部样式
+		function getStyle(obj, name)
+		{
+			if(obj.currentStyle)
+			{
+				return obj.currentStyle[name];
+			}
+			else
+			{
+				return getComputedStyle(obj, false)[name];
+			}
+		}
+		//渐变动画
+		function move(obj,attr,tar){
+			clearInterval(obj.timer);
+			obj.timer=setInterval(function(){
+				var cur=parseInt(getStyle(obj,attr));
+				var itarget=parseInt(tar);
+				var speed=(itarget-cur)/6;
+				speed=speed>0?Math.ceil(speed):Math.floor(speed);
+				obj.style[attr]=parseInt(getStyle(obj,attr))+speed+'px';
+				if(speed==0){
+					clearInterval(obj.timer);
+				}
+			},30);
+		}
+		//事件绑定函数
+		function addEvent(obj,ev,fun){
+			if(obj.attachEvent){
+				obj.attachEvent('on'+ev,fun);
+			}else{
+				obj.addEventListener(ev,fun,false);
+			}
+		}
+		//阻止默认行为
+		function stopEvent(ev){
+			var e=ev||window.event;
+			if(e.preventDefault){
+				e.preventDefault();
+			}
+			else{
+				e.returnValue=false;//ie
+			}
+		}
+		//计算最终结果
+		function getResult(){
+			function evalResult(){
+				var result=eval(oinput.value);
+				return result;			
+			}
+			//捕获异常
+			try{
+				var x=evalResult();
+				return x;
+			}
+			catch (e){
+				oinput.className='showError';
+				var errorHint=document.getElementById('errorHint');
+				move(errorHint,'top',100);
+				setTimeout(function(){
+					oinput.className='';
+					move(errorHint,'top',-30);
+				},2000);
+				return oinput.value+"是错误格式";
+			}
+		}
+		//文本框获取焦点，错误提示消失
+		//按下回车得到结果
+		function enterResult(ev){
+			var e=ev||window.event;
+			if(e.keyCode==13){
+				stopEvent(ev);//阻止enter键的默认行为
+				var result=getResult();
+				oinput.value=result;
+			}
+		}
+		//绑定点击事件
+		function init(){
+			var otable=document.getElementsByTagName('table')[0];
+			addEvent(otable,'keydown',function(ev){
+				enterResult(ev);
+			});
+			addEvent(otable,'click',function(ev){
+				stopEvent(ev);
+				var e=ev||window.event;
+				var itat=e.target||e.srcElement;
+				var obtns=document.getElementsByTagName('button');
+				if(itat.nodeName.toLowerCase()=='button'){
+					for(var i=0;i<obtns.length;i++){
+						obtns[i].style.borderColor='#000';
+					}
+					itat.style.borderColor='white';
+					if(itat.className!='setChange'){
+						if(oinput.value=='0'){
+							oinput.value='';
+							oinput.value+=itat.innerHTML;
+						}
+						else{
+							oinput.value+=itat.innerHTML;
+						}
+					}else{
+						if(itat.id=='backSpace'){
+							oinput.value=oinput.value.toString().slice(0,-1);
+						}
+						else if(itat.id=='clearNum'){
+							oinput.value='0';
+						}else{
+							var result=getResult();
+							oinput.value=result;
+						}
+					}
+				}
+			});
+		}
+		init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #efefef;
+        }
+
+        .title {
+            width: 400px;
+            height: 20px;
+            margin: 20px auto;
+        }
+        #datu {
+            width: 1200px;
+            height: 480px;
+            margin: 140px auto;
+            overflow: hidden;
+            z-index: -2;
+        }
+
+        #picture {
+            width: 13200px;
+            height: 480px;
+            float: left;
+            z-index: -3;
+
+        }
+
+        #picture img {
+            display: block;
+            width: 1200px;
+            height: 480px;
+            float: left;
+
+        }
+
+        #yd {
+            position: absolute;
+            left: 50%;
+            margin-left: -100px;
+            top: 600px;
+            width: 200px;
+            height: 10px;
+            z-index: 2;
+        }
+
+        #yd ul li {
+            width: 10px;
+            height: 10px;
+            margin-left: 9px;
+            float: left;
+            list-style: none;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        #left {
+            top: 320px;
+            left: 50%;
+            margin-left: -570px;
+            font-size: 100px;
+            width: 60px;
+            height: 60px;
+            color: white;
+            cursor: pointer;
+            position: absolute;
+        }
+
+        #right {
+            top: 320px;
+            left: 50%;
+            margin-left: 500px;
+            font-size: 100px;
+            width: 60px;
+            height: 60px;
+            color: white;
+            cursor: pointer;
+            position: absolute;
+        }
+
+        #left:hover {
+            color: green;
+        }
+
+        #right:hover {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">
+        <p style="text-align:center;font-size: 58px;font-weight: bolder; line-height: 60px;color: green;">
+            爱奇艺轮播图
+        </p>
+    </div>
+    <div id="datu">
+        <div id="picture">
+            <img src="images/aiqiyi1.png" />
+            <img src="images/aiqiyi2.png" />
+            <img src="images/aiqiyi3.png" />
+            <img src="images/aiqiyi4.png" />
+            <img src="images/aiqiyi5.png" />
+            <img src="images/aiqiyi6.png" />
+            <img src="images/aiqiyi7.png" />
+            <img src="images/aiqiyi8.png" />
+            <img src="images/aiqiyi9.png" />
+            <img src="images/aiqiyi10.png" />
+            <img src="images/aiqiyi1.png" />
+        </div>
+        <div id="yd">
+            <ul>
+                <li style="background-color: green;"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div id="left"><</div> 
+		<div id="right">></div>
+    </div>
+        <script type="text/javascript">
+            var datu = document.getElementById("datu");
+            var picture = document.getElementById("picture");
+            var imgs = picture.getElementsByTagName("imgs");
+            var theyd = document.getElementById("yd");
+            var theli = theyd.getElementsByTagName("li");
+            var timer1;
+            var i = 1;
+            timer1 = setInterval(moveleft, 1000);
+            function moveleft() {
+                datu.scrollLeft += 1200;
+                if (datu.scrollLeft >= 1200 * 10) {
+                    datu.scrollLeft = 0;
+                    i = 0;
+                }
+                for (var j = 0; j < 10; j++) {
+                    if (j == i) {
+                        theli[j].style.backgroundColor = "grey";
+                    } else {
+                        theli[j].style.backgroundColor = "";
+                    }
+
+                }
+                i++;
+            }
+            datu.onmouseover = function () {
+                if (datu == this) {
+                    clearTimeout(timer1);
+                }
+            }
+            datu.onmouseleave = function () {
+                timer1 = setInterval(moveleft, 1000);
+            }
+
+            for (var k = 0; k < 10; k++) {
+                theli[k].onmouseover = function () {
+                    for (var l = 0; l < 10; l++) {
+                        if (this == theli[l]) {
+                            datu.scrollLeft = 1200 * l;
+                            i = l + 1;
+                            theli[l].style.backgroundColor = "green";
+                        } else {
+                            theli[l].style.backgroundColor = "";
+                        }
+                    }
+                }
+            }
+            var lefta = 1;
+            left.onmouseleave = function () {
+                lefta = 1;
+                i++;
+            }
+            left.onmousedown = function () {
+                datu.scrollLeft -= 1200;
+                i = i - 1 - lefta;
+                lefta = 0;
+                if (i < 0) {
+                    datu.scrollLeft = 1200 * 10;
+                    i = 9;
+                }
+                for (var m = 0; m < 10; m++) {
+                    if (i == m) {
+                        theli[m].style.backgroundColor = "green";
+                    } else {
+                        theli[m].style.backgroundColor = "";
+                    }
+                }
+            }
+            var righta = 1;
+            right.onmouseleave = function () {
+                lefta = 1;
+                i++;
+            }
+            right.onmousedown = function () {
+                datu.scrollLeft += 1200;
+                i = i + 1 - lefta;
+                lefta = 0;
+                if (datu.scrollLeft >= 1200 * 10) {
+                    datu.scrollLeft = 0;
+                    i = 0;
+                }
+                for (var m = 0; m < 10; m++) {
+                    if (i == m) {
+                        theli[m].style.backgroundColor = "green";
+                    } else {
+                        theli[m].style.backgroundColor = "";
+                    }
+                }
+            }
+
+        </script>
+</body>
+
+</html>

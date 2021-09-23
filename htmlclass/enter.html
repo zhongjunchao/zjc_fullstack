@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>enter</title>
+    <script type="text/javascript">
+        //加载时调整网页宽度
+        window.onload=function(){
+            resetPage();
+        }
+        //浏览器被重置大小时调整网页宽度
+        window.onresize=function(){
+            resetPage();
+        }
+        function resetPage(){
+            var deviceWidth=document.documentElement.clientWidth;
+            //获取ID为wrapper的元素
+            originWidth=document.getElementById('wrapper');
+            //获取该元素的宽度并确定缩放比例
+            scale=deviceWidth/originWidth.clientWidth; 
+            //按比例缩放到适合屏幕的大小
+            document.body.style.zoom=scale;
+        }
+    </script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body {
+	    background-color: white;
+	}
+    #wrapper {
+        width: 480px;
+        height: 800px;
+        margin: 0 auto;
+        background-color: rgb(21, 142, 212);
+        display: flex;
+    }
+</style>
+
+<body>
+    <div id="wrapper">
+        <p>登陆主页<p>
+        <br />
+		<label id="user"></label>
+    </div>
+    <script>
+        var usernamedata=localStorage.username;
+        var obj=document.getElementById("user");
+        console.log(usernamedata);
+        window.onload=function(){
+        obj.innerHTML= "欢迎回来：" + usernamedata;
+        localStorage.clear();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title></title>
+    <script type="text/javascript">
+
+        document.addEventListener('plusready', function () {
+            //console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+
+        });
+
+    </script>
+</head>
+<style>
+    p {
+        color: black;
+        font-size: 1.875rem;
+    }
+
+    #pic1{
+        width: 200px;
+        height: 200px;
+    }
+    #pic2 {
+        border-radius: 10px;
+        padding: 3px;
+        height: 80px;
+    }
+
+    .bg01 {
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: cover;
+        background-image: url(images/2301.jpg);
+    }
+
+    #load {
+        position: absolute;
+        top: 50%;
+        margin-top: -90px;
+
+        width: 100%;
+        height: auto;
+        text-align: center;
+        color: #fff;
+        font-size: 1rem;
+        text-shadow: 1px 1px 1px #333;
+
+    }
+</style>
+
+<body>
+    <div data-role="page" class="bg01" id="pagezero">
+        <div data-role="main" class="ui-content" id="load">
+            <img src="images/2302.png" alt="logo">
+            <br>努力加载中。。。。
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).on("pagecreate", "#pagezero", function () {
+            setInterval("changepage()", 5000);
+        });
+        function changepage() {
+            window.location.href = "#pageone";
+        }
+    </script>
+
+
+
+    <div data-role="page" id="pageone">
+        <div data-role="header">
+
+            <p>Wechat</p>
+
+        </div>
+
+        <div data-role="main" class="ui-content">
+
+            <ul data-role="listview" data-inset="true">
+                <li data-icon="false"><a href="#"><img src="images/2313.jpg" alt="USA" class="ui-li-icon" id="pic1">
+                        <h2>USA</h2>
+                        <p>USA是一个自由的国度。</p>
+                        <span class="ui-li-count">12:02</span>
+                    </a></li>
+
+                <li data-icon="false"><a href="#"><img src="images/2314.jpg" Great alt="Britain" class="ui-li-icon">
+
+                        <h2> Great Britain</h2>
+                        <p>GB是一个知识的国度。</p>
+                        <span class="ui-li-count">12:02</span>
+                    </a></li>
+
+                <li data-icon="false"><a href="#"><img src="images/2315.jpg" alt="Finland" class="ui-li-icon">
+
+                        <h2> Finland</h2>
+                        <p>Finland是一个美丽的国度。</p>
+                        <span class="ui-li-count">12:02</span>
+                    </a></li>
+
+                <li data-icon="false"><a href="#"><img src="images/2316.jpg" alt="Germany" class="ui-li-icon">
+
+                        <h2> Germany</h2>
+                        <p> Germany是一个足球的国度。</p>
+                        <span class="ui-li-count">12:02</span>
+                    </a></li>
+
+                <li data-icon="false"><a href="#"><img src="images/2317.jpg" alt="France" class="ui-li-icon">
+
+                        <h2> France</h2>
+                        <p> France是一个浪漫的国度。</p>
+                        <span class="ui-li-count">12:02</span>
+                    </a></li>
+
+            </ul>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+
+            <div data-role="navbar" id="fot">
+                <ul>
+                    <li><a href="#page" data-icon="refresh">主页</a></li>
+                    <li><a href="#second" data-icon="comment">地理位置</a></li>
+                    <li><a href="#search" data-icon="search">搜索</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

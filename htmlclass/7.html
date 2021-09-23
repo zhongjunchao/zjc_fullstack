@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+    <style type=" text/css">
+        .info {
+            display: block;
+            width: 65%;
+        }
+
+        .ui-icon-chat::after {
+            background: urL('img/chat.png') no- repeat;
+            background-size: 20px 20px;
+        }
+
+        .ui-icon-txl::after {
+            background: url('img/txl.png') no-repeat;
+            background-size: 20px 20px;
+        }
+
+        .ui-icon-me::after {
+            background: url('img/me.png') no- repeat;
+            background-size: 20px 20px;
+        }
+
+        .ui-icon-find::after {
+            background: urL('img/find.png') no- repeat;
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div data-role=" page">
+        <div data- role="header">
+            <h1>消息</h1>
+            <a href="#anylink" data-role=" button" data-icon=" plus" data-iconpos=" notext">plus</a>
+            <a href="#anylink" data-role=" button" data-icon=" search" data-iconpos=" notext">search</a>
+        </div>
+        <div da - role="main" class="ui-content">
+            <ul data-role="listview" data-icon=" false">
+                <li>
+                    <a href="#">
+                        <img src=" img/ chrome . png">
+                        <h2> Google Chrome</h2>
+                        <p class=" info">Google Chrome 是免费的开源web 浏览器。发布于2008年。</p>
+                        <p class="ui-li-aside">15:32</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src=" img/firefox. png">
+                        <h2>Mozilla Firefox</h2>
+                        <p class="info"> Firefox 是来自Mozilla 的web 浏览器。发布于2004年。</p>
+                        <p class="ui-li-aside">12:12</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div data- role="footer" data-position=" fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#anylink" data-icon=" chat">Chat</a></1i>
+                    <li><a href="#anylink" data-icon=" txl">通讯录</a></li>
+                    <li><a href="#anylink" data-icon="find">发现</a></li>
+                    <li><a href="#anylink" data-icon="me">我</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

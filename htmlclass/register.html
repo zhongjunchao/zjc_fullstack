@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>register</title>
+    <script type="text/javascript">
+        //加载时调整网页宽度
+        window.onload=function(){
+            resetPage();
+        }
+        //浏览器被重置大小时调整网页宽度
+        window.onresize=function(){
+            resetPage();
+        }
+        function resetPage(){
+            var deviceWidth=document.documentElement.clientWidth;
+            //获取ID为wrapper的元素
+            originWidth=document.getElementById('wrapper');
+            //获取该元素的宽度并确定缩放比例
+            scale=deviceWidth/originWidth.clientWidth; 
+            //按比例缩放到适合屏幕的大小
+            document.body.style.zoom=scale;
+        }
+    </script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body {
+	    background-color: white;
+	}
+    #wrapper {
+        width: 480px;
+        height: 800px;
+        margin: 0 auto;
+        background-color: rgb(21, 142, 212);
+        display: flex;
+    }
+    #in{
+        width: 200px;
+        height: 200px;
+        top: 200px;
+        margin: 0 auto;
+        position: relative;
+        background-color: lightblue;
+    }
+</style>
+<body>
+
+
+    <div id="wrapper">
+        <div id="in">
+            <input id="username" type="text" placeholder="请输入用户名">
+            <input id="password" type="password" placeholder="请输入密码">
+            <input id="passwordTwo" type="password" placeholder="请再次输入密码">
+            <br /><br />
+            <input id="setInput" type="button" value="注册">
+            <input id="login" type="button" value="返回登录">
+            
+        </div>
+    </div>
+
+    <script>
+        //获取页面中的元素
+        var username = document.getElementById("username");
+        var password = document.getElementById("password");
+        var passwordTwo = document.getElementById("passwordTwo");
+        var setInput = document.getElementById("setInput");
+        var login = document.getElementById("login");
+        //给注册按钮增加个点击事件，判断用户名和密码是否为空，密码和重复密码是否一致，注册成功跳转
+        setInput.addEventListener("click", function () {
+            if (username.value == "" || password.value == "" || passwordTwo.value == "") {
+                alert("用户名以及密码不能为空");
+            } else if (password.value != passwordTwo.value) {
+                alert("密码和重复密码不一致");
+            } else {
+                if (!tuust(username.value)) {
+                    localStorage.username += username.value + ":" + password.value + ";";
+                    location.href = "enter.html";
+                    alert("恭喜，注册成功");
+                } else {
+                    alert("你输入的用户名已经被注册");
+                    username.value = "";
+                }
+            }
+        });
+        //创建一个方法，判断注册的用户名是否被注册
+        function tuust(value) {
+            var dta = localStorage.username.split(";");
+            for (let i = 0; i < dta.length; i++) {
+                var arrPust = dta[i].split(":");
+                if (arrPust[0] == value) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        //跳转到登录界面
+        login.addEventListener("click", function () {
+            location.href = "login.html";
+        })
+    </script>
+</body>
+
+</html>
